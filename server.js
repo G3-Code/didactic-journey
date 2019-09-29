@@ -1,10 +1,11 @@
 const express = require("express");
 const cors = require("cors");
-const fileupload = require("express-fileupload");
+const fileUpload = require("express-fileupload");
 const PORT = 4000;
 
 const server = express();
 server.use(express.json());
+server.use(fileUpload());
 server.use(cors());
 
 server.listen(PORT, () => {
