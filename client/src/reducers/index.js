@@ -2,7 +2,7 @@ import { TEMP } from "../actions";
 
 const initialState = {};
 
-export default reducer = (state = initialState, action) => {
+const reducer = (state = initialState, action) => {
   switch (action.type) {
     case TEMP: {
       console.log("temp");
@@ -13,3 +13,5 @@ export default reducer = (state = initialState, action) => {
     }
   }
 };
+
+export default reducer;
