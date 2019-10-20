@@ -9,7 +9,7 @@ import SearchProduct from "./components/SearchProduct";
 
 function App() {
   return (
-    <div className="container">
+    <div>
       <Header />
       <Route path="/addProduct" render={props => <AddProduct {...props} />} />
       <Route path="/listProduct" render={props => <ListProduct {...props} />} />
