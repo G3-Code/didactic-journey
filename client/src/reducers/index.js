@@ -1,6 +1,16 @@
 import { TEMP } from "../actions";
 
-const initialState = {};
+const initialState = {
+  product: {
+    productName: "",
+    productType: "",
+    effStartDate: "",
+    effEndDate: "",
+    productCategory: "",
+    uploadProductFile: "",
+    uploadProductSpec: ""
+  }
+};
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {

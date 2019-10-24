@@ -3,6 +3,11 @@ import React, { useState } from "react";
 export default function AddProduct() {
   const [productName, setProductName] = useState("");
 
+  const handleAddProduct = e => {
+    e.preventDefault();
+    console.log(productName);
+  };
+
   const handleChange = e => {
     e.persist();
     switch (e.target.name) {
@@ -31,7 +36,11 @@ export default function AddProduct() {
                 onChange={handleChange}
               />
             </div>
+            <button className="btn" onClick={handleAddProduct}>
+              Add Product
+            </button>
           </form>
+          <div className="row"></div>
         </div>
       </div>
     </div>
