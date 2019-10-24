@@ -17,17 +17,20 @@ export default function AddProduct() {
   };
   return (
     <div className="container">
+      <div className="row"></div>
       <div className="row center-align">
-        <div className="col s12 l4 m6 card offset-l4">
+        <div className="col s10 l6 m8 card offset-l3 offset-m2 offset-s1">
           <h4 className="teal-text">Add Product</h4>
           <form>
-            <input
-              type="text"
-              placeholder="Product Name"
-              value={productName}
-              name="productName"
-              onChange={handleChange}
-            />
+            <div className="input-field col s6 offset-s3">
+              <input
+                type="text"
+                placeholder="Product Name"
+                value={productName}
+                name="productName"
+                onChange={handleChange}
+              />
+            </div>
           </form>
         </div>
       </div>
