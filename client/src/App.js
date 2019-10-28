@@ -7,18 +7,23 @@ import AddProduct from "./components/AddProduct";
 import ListProduct from "./components/ListProduct";
 import SearchProduct from "./components/SearchProduct";
 
-function App() {
-  return (
-    <div>
-      <Header />
-      <Route path="/addProduct" render={props => <AddProduct {...props} />} />
-      <Route path="/listProduct" render={props => <ListProduct {...props} />} />
-      <Route
-        path="/searchProduct"
-        render={props => <SearchProduct {...props} />}
-      />
-    </div>
-  );
+class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <Header />
+        <Route path="/addProduct" render={props => <AddProduct {...props} />} />
+        <Route
+          path="/listProduct"
+          render={props => <ListProduct {...props} />}
+        />
+        <Route
+          path="/searchProduct"
+          render={props => <SearchProduct {...props} />}
+        />
+      </div>
+    );
+  }
 }
 
 export default App;
