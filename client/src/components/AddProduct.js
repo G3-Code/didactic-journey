@@ -1,25 +1,16 @@
 import React, { useState } from "react";
 
-export default function AddProduct() {
+export default function AddProduct(props) {
   const [productName, setProductName] = useState("");
 
+  // Handler for add product
   const handleAddProduct = e => {
     e.preventDefault();
-    console.log(productName);
+    let product = { productName };
+    props.addProduct(e, product);
   };
 
-  const handleChange = e => {
-    e.persist();
-    switch (e.target.name) {
-      case "productName": {
-        setProductName(e.target.value);
-        break;
-      }
-      default: {
-        console.log(e.target.name);
-      }
-    }
-  };
+  // Default return
   return (
     <div className="container">
       <div className="row"></div>
@@ -33,7 +24,7 @@ export default function AddProduct() {
                 placeholder="Product Name"
                 value={productName}
                 name="productName"
-                onChange={handleChange}
+                onChange={e => setProductName(e.target.value)}
               />
             </div>
             <button className="btn" onClick={handleAddProduct}>
