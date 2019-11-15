@@ -9,7 +9,8 @@ const initialState = {
     productCategory: "",
     uploadProductFile: "",
     uploadProductSpec: ""
-  }
+  },
+  productTypes: ["Convenience", "Shopping", "Speciality", "Unsought"]
 };
 
 const reducer = (state = initialState, action) => {
