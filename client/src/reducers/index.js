@@ -1,4 +1,8 @@
-import { TEMP } from "../actions";
+import {
+  ADD_PRODUCT_SUCCESS,
+  ADD_PRODUCT_START,
+  ADD_PRODUCT_FAILURE
+} from "../actions";
 
 const initialState = {
   product: {
@@ -10,14 +14,30 @@ const initialState = {
     uploadProductFile: "",
     uploadProductSpec: ""
   },
-  productTypes: ["Convenience", "Shopping", "Speciality", "Unsought"]
+  productTypes: ["Convenience", "Shopping", "Speciality", "Unsought"],
+  products: [],
+  error: ""
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case TEMP: {
-      console.log("temp");
-      return state;
+    case ADD_PRODUCT_START: {
+      return {
+        ...state,
+        products: action.payload
+      };
+    }
+    case ADD_PRODUCT_SUCCESS: {
+      return {
+        ...state,
+        products: action.payload
+      };
+    }
+    case ADD_PRODUCT_FAILURE: {
+      return {
+        ...state,
+        error: action.payload
+      };
     }
     default: {
       return state;
