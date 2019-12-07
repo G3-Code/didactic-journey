@@ -7,6 +7,7 @@ import AddProduct from "./components/AddProduct";
 import ListProduct from "./components/ListProduct";
 import SearchProduct from "./components/SearchProduct";
 import { connect } from "react-redux";
+import { addProduct } from "./actions";
 
 class App extends React.Component {
   // This is the add product handler
@@ -39,4 +40,12 @@ class App extends React.Component {
   }
 }
 
-export default withRouter(connect(null)(App));
+const mapStateToProps = state => {
+  return {
+    products: state.products,
+    product: state.product,
+    error: state.error
+  };
+};
+
+export default withRouter(connect(mapStateToProps, { addProduct })(App));
