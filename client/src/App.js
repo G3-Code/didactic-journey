@@ -14,6 +14,7 @@ class App extends React.Component {
   handleAddProduct = (e, product) => {
     e.preventDefault();
     console.log(product);
+    this.props.addProduct(product);
   };
 
   // Default render method
