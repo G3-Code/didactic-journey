@@ -14,24 +14,30 @@ export default function AddProduct(props) {
   const [productName, setProductName] = useState("");
   const [productId, setProductId] = useState("");
   const [effectiveDate, setEffectiveDate] = useState("");
+  let isValid = false;
 
   //use effect
 
   useEffect(() => {
     document.addEventListener("DOMContentLoaded", function() {
       var elems = document.querySelectorAll(".datepicker");
-      var instances = M.Datepicker.init(elems, {
-        autoClose: true,
-        format: "mmddyyyy"
-      });
+      var instances = M.Datepicker.init(elems, {});
     });
   });
 
   const // Handler for add product
     handleAddProduct = e => {
       e.preventDefault();
-      let product = { productName, productId };
-      props.addProduct(e, product);
+      let product = { productName, productId, effectiveDate };
+      let validNodes = document.querySelectorAll(".valid");
+      if (validNodes.length === 3) {
+        // next step
+        props.addProduct(e, product);
+      } else {
+        // check if valid is present
+        // display error
+      }
+      //props.addProduct(e, product);
     };
 
   // Validating the input field
@@ -89,7 +95,7 @@ export default function AddProduct(props) {
           {/* EFFECTIVE DATE - MANDATORY */}
           <div className="input-field col s12 m4 l4">
             <input
-              type="text"
+              type="date"
               placeholder="Effective Date"
               value={effectiveDate}
               name="effectiveDate"
