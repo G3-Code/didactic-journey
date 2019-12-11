@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { useEffect } from "react";
-import M from "materialize-css";
 
 export default function AddProduct(props) {
   // Validation pattern
@@ -14,28 +12,24 @@ export default function AddProduct(props) {
   const [productName, setProductName] = useState("");
   const [productId, setProductId] = useState("");
   const [effectiveDate, setEffectiveDate] = useState("");
-  let isValid = false;
-
-  //use effect
-
-  useEffect(() => {
-    document.addEventListener("DOMContentLoaded", function() {
-      var elems = document.querySelectorAll(".datepicker");
-      var instances = M.Datepicker.init(elems, {});
-    });
-  });
 
   const // Handler for add product
     handleAddProduct = e => {
       e.preventDefault();
       let product = { productName, productId, effectiveDate };
       let validNodes = document.querySelectorAll(".valid");
-      if (validNodes.length === 3) {
+      let inputNodes = document.querySelectorAll("input");
+      if (validNodes.length === inputNodes.length) {
         // next step
         props.addProduct(e, product);
       } else {
         // check if valid is present
         // display error
+        inputNodes.forEach(input => {
+          if (!input.classList.contains("valid")) {
+            input.className = "invalid";
+          }
+        });
       }
       //props.addProduct(e, product);
     };
