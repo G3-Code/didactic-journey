@@ -23,7 +23,6 @@ export default function AddProduct(props) {
         // next step
         props.addProduct(e, product);
       } else {
-        // check if valid is present
         // display error
         inputNodes.forEach(input => {
           if (!input.classList.contains("valid")) {
@@ -31,7 +30,6 @@ export default function AddProduct(props) {
           }
         });
       }
-      //props.addProduct(e, product);
     };
 
   // Validating the input field
