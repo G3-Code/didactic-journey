@@ -12,6 +12,7 @@ export default function AddProduct(props) {
   const [productName, setProductName] = useState("");
   const [productId, setProductId] = useState("");
   const [effectiveDate, setEffectiveDate] = useState("");
+  let productTypes = ["Convenience", "Shopping", "Speciality", "Unsought"];
 
   const // Handler for add product
     handleAddProduct = e => {

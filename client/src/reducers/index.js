@@ -14,7 +14,6 @@ const initialState = {
     uploadProductFile: "",
     uploadProductSpec: ""
   },
-  productTypes: ["Convenience", "Shopping", "Speciality", "Unsought"],
   products: [],
   error: ""
 };
