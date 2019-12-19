@@ -5,21 +5,23 @@ export default function AddProduct(props) {
   const pattern = {
     productName: /^[a-z\s\w]{8,15}$/i,
     productId: /^[\d]{5}$/,
-    effectiveDate: /.+/
+    effectiveDate: /.+/,
+    productType: /^(Convenience|Shopping|Speciality|Unsought)$/
   };
 
   // Form fields
   const [productName, setProductName] = useState("");
   const [productId, setProductId] = useState("");
   const [effectiveDate, setEffectiveDate] = useState("");
+  const [productType, setProductType] = useState("default");
   let productTypes = ["Convenience", "Shopping", "Speciality", "Unsought"];
 
   const // Handler for add product
     handleAddProduct = e => {
       e.preventDefault();
-      let product = { productName, productId, effectiveDate };
+      let product = { productName, productId, effectiveDate, productType };
       let validNodes = document.querySelectorAll(".valid");
-      let inputNodes = document.querySelectorAll("input");
+      let inputNodes = document.querySelectorAll(".prod-input");
       if (validNodes.length === inputNodes.length) {
         // next step
         props.addProduct(e, product);
@@ -27,7 +29,7 @@ export default function AddProduct(props) {
         // display error
         inputNodes.forEach(input => {
           if (!input.classList.contains("valid")) {
-            input.className = "invalid";
+            input.classList.add("invalid");
           }
         });
       }
@@ -37,9 +39,11 @@ export default function AddProduct(props) {
   let validateInput = (field, regex) => {
     let inputHandle = document.getElementById(field.name);
     if (regex.test(field.value)) {
-      inputHandle.className = "valid";
+      inputHandle.classList.remove("invalid");
+      inputHandle.classList.add("valid");
     } else {
-      inputHandle.className = "invalid";
+      inputHandle.classList.remove("valid");
+      inputHandle.classList.add("invalid");
     }
   };
 
@@ -50,6 +54,7 @@ export default function AddProduct(props) {
 
       <h5 className="teal-text">Add Product</h5>
       <form>
+        {/* ROW 1 */}
         <div className="row">
           {/* PRODUCT NAME - ONLY WORDS AND SPACE*/}
           <div className="input-field col s12 m4 l4">
@@ -59,6 +64,7 @@ export default function AddProduct(props) {
               value={productName}
               name="productName"
               id="productName"
+              className="prod-input"
               onChange={e => {
                 validateInput(e.target, pattern.productName);
                 setProductName(e.target.value);
@@ -77,6 +83,7 @@ export default function AddProduct(props) {
               value={productId}
               name="productId"
               id="productId"
+              className="prod-input"
               onChange={e => {
                 validateInput(e.target, pattern.productId);
                 setProductId(e.target.value);
@@ -93,7 +100,7 @@ export default function AddProduct(props) {
               value={effectiveDate}
               name="effectiveDate"
               id="effectiveDate"
-              className="datepicker"
+              className="prod-input"
               onChange={e => {
                 validateInput(e.target, pattern.effectiveDate);
                 setEffectiveDate(e.target.value);
@@ -102,6 +109,46 @@ export default function AddProduct(props) {
             <p className="orange-text left-align">Should be 5 digit number</p>
           </div>
         </div>
+        {/* ROW 2 */}
+        <div className="row">
+          <div className="input-field col s12 l4 m4">
+            <select
+              name="productType"
+              id="productType"
+              defaultValue={productType}
+              className="browser-default prod-input"
+              onChange={e => {
+                validateInput(e.target, pattern.productType);
+                setProductType(e.target.value);
+              }}
+            >
+              <option value="default">Choose Product Type</option>
+              {productTypes.map((prodType, index) => (
+                <option key={index} value={prodType}>
+                  {prodType}
+                </option>
+              ))}
+            </select>
+            <p className="orange-text left-align">
+              Please select a Product Type
+            </p>
+          </div>
+
+          <div className="input-field col s12 l4 m4">
+            <div className="switch prod-input">
+              <label>
+                Off
+                <input type="checkbox" />
+                <span className="lever"></span>
+                On
+              </label>
+            </div>
+            <p className="orange-text left-align">
+              Please select a Product Type
+            </p>
+          </div>
+        </div>
+        {/* BUTTON ROW - LAST */}
         <div className="row">
           <button className="btn" onClick={handleAddProduct}>
             Add Product
